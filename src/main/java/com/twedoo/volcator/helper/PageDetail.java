@@ -1,4 +1,4 @@
-package com.twedoo.volcator.infrastructure.helper;
+package com.twedoo.volcator.helper;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
