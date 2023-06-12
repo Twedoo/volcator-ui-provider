@@ -16,7 +16,6 @@ public class ColorClassesResource {
 
     @GET
     @Path("color-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> colorClasses(@QueryParam("page") @DefaultValue("0") int page,
                                               @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Color.findAll(), page, size);
@@ -24,7 +23,6 @@ public class ColorClassesResource {
 
     @GET
     @Path("from-color-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> fromColorClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(FromColor.findAll(), page, size);
@@ -32,14 +30,12 @@ public class ColorClassesResource {
 
     @GET
     @Path("gradient-direction-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> gradientDirectionClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(GradientDirection.findAll(), page, size);
     }
     @GET
     @Path("to-color-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> toColorClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(ToColor.findAll(), page, size);
@@ -47,7 +43,6 @@ public class ColorClassesResource {
 
     @GET
     @Path("via-color-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> viaColorClasses(@QueryParam("page") @DefaultValue("0") int page,
                                         @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(ViaColor.findAll(), page, size);

@@ -16,7 +16,6 @@ public class TextClassesResource {
 
     @GET
     @Path("decoration-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> decorationClasses(@QueryParam("page") @DefaultValue("0") int page,
                                               @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Decoration.findAll(), page, size);
@@ -24,7 +23,6 @@ public class TextClassesResource {
 
     @GET
     @Path("font-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> fontClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Font.findAll(), page, size);
@@ -32,21 +30,18 @@ public class TextClassesResource {
 
     @GET
     @Path("list-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> listClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(List.findAll(), page, size);
     }
     @GET
     @Path("size-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> sizeClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Size.findAll(), page, size);
     }
     @GET
     @Path("space-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> spaceClasses(@QueryParam("page") @DefaultValue("0") int page,
                                          @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Space.findAll(), page, size);
@@ -54,7 +49,6 @@ public class TextClassesResource {
 
     @GET
     @Path("style-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> styleClasses(@QueryParam("page") @DefaultValue("0") int page,
                                           @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Style.findAll(), page, size);

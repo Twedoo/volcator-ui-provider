@@ -21,7 +21,6 @@ public class BorderClassesResource {
 
     @GET
     @Path("border-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> borderClasses(@QueryParam("page") @DefaultValue("0") int page,
                                               @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Border.findAll(), page, size);
@@ -30,7 +29,6 @@ public class BorderClassesResource {
 
     @GET
     @Path("border-color-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> borderColorClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(BorderColor.findAll(), page, size);
@@ -39,7 +37,6 @@ public class BorderClassesResource {
 
     @GET
     @Path("border-focus-color-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> borderFocusColorClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(BorderFocus.findAll(), page, size);
@@ -47,7 +44,6 @@ public class BorderClassesResource {
     }
     @GET
     @Path("border-ring-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> borderRingClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(BorderRing.findAll(), page, size);

@@ -19,7 +19,6 @@ public class PositionClassesResource {
 
     @GET
     @Path("float-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> floatClasses(@QueryParam("page") @DefaultValue("0") int page,
                                               @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Float.findAll(), page, size);
@@ -28,7 +27,6 @@ public class PositionClassesResource {
 
     @GET
     @Path("object-position-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> objectPositionClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(ObjectPosition.findAll(), page, size);
@@ -37,7 +35,6 @@ public class PositionClassesResource {
 
     @GET
     @Path("placement-trbl-position-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> placementTrblPositionClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(PlacementTrblPosition.findAll(), page, size);
@@ -45,7 +42,6 @@ public class PositionClassesResource {
     }
     @GET
     @Path("position-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> positionClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Position.findAll(), page, size);

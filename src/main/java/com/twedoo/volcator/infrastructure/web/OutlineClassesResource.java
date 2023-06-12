@@ -17,7 +17,6 @@ public class OutlineClassesResource {
 
     @GET
     @Path("outline-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> outlineClasses(@QueryParam("page") @DefaultValue("0") int page,
                                               @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(Outline.findAll(), page, size);
@@ -26,7 +25,6 @@ public class OutlineClassesResource {
 
     @GET
     @Path("outline-focus-classes")
-    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> outlineFocusClasses(@QueryParam("page") @DefaultValue("0") int page,
                              @QueryParam("size") @DefaultValue("5") int size) {
         return PageHelper.pageDetailResponse(OutlineFocus.findAll(), page, size);
