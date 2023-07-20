@@ -17,25 +17,38 @@ import jakarta.ws.rs.core.Response;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.config.ConfigProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@Path("/command")
+@Path("/{version}/volcator/setting")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class CommandResource {
+public class VolcatorSettingsCommandResource {
     private static final String LABEL = "label";
     private static final String VALUE = "value";
 
     @Inject
     ReactiveMongoClient mongoClient;
 
-    @ConfigProperty( name= "quarkus.mongodb.database")
-    String databaseName;
+    @PathParam("version")
+    private String version;
+
+    public String switchVersion() {
+        String databaseName = null;
+        if (version.equals("v1")) {
+            databaseName = ConfigProvider.getConfig().getValue("volcator.v1.database.setting", String.class);
+        } else if (version.equals("v2")) {
+            databaseName = ConfigProvider.getConfig().getValue("volcator.v2.database.setting", String.class);
+        }
+        return databaseName;
+    }
+
 
     @POST
-    @Path("add-command")
+    @Path("add-setting")
     public Uni<Void> addCommand(RequestCommand command) {
         Document document = new Document();
          return getCollection(command.getCollection())
@@ -45,8 +58,9 @@ public class CommandResource {
                  )
                  .onItem().ignore().andContinueWithNull();
     }
+
     @POST
-    @Path("add-list-command/{collectionName}")
+    @Path("add-list-setting/{collectionName}")
     public Uni<Void> addListCommand(List<Command> commands, String collectionName) {
         List<Document> documents = new ArrayList<>();
 
@@ -63,8 +77,9 @@ public class CommandResource {
                         documents
                 ).onItem().ignore().andContinueWithNull();
     }
+
     @PUT
-    @Path("edit-command")
+    @Path("edit-setting")
     public Uni<UpdateResult> editCommand(RequestCommand requestCommand) {
 
         BasicDBObject query = new BasicDBObject("_id", new ObjectId(requestCommand.getId()));
@@ -77,7 +92,7 @@ public class CommandResource {
     }
 
     @DELETE
-    @Path("delete-command")
+    @Path("delete-setting")
     public Uni<DeleteResult> deleteCommand(RequestCommand requestCommand) {
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(requestCommand.getId()));
@@ -85,13 +100,13 @@ public class CommandResource {
                 .deleteOne(query);
     }
 
-    private ReactiveMongoCollection<Document> getCollection(String collection){
-        return mongoClient.getDatabase(databaseName).getCollection(collection);
+    private ReactiveMongoCollection<Document> getCollection(String collection) {
+        return mongoClient.getDatabase(switchVersion()).getCollection(collection);
     }
 
 
     @GET
-    @Path("search-command")
+    @Path("search-setting")
     public Uni<Response> fullTextSearch(@QueryParam("collectionName") String collectionName,
                                 @QueryParam("pageNumber") @DefaultValue("1") int pageNumber,
                                 @QueryParam("pageSize") @DefaultValue("5") int pageSize,
@@ -135,6 +150,4 @@ public class CommandResource {
                 .onItem().transform(Response.ResponseBuilder::build);
 
     }
-
-
 }
