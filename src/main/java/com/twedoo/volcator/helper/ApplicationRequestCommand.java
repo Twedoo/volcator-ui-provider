@@ -12,6 +12,6 @@ import org.bson.Document;
 @Builder
 public class ApplicationRequestCommand {
     private Document page;
-    private String collection;
+    private String application;
     private String id;
 }
